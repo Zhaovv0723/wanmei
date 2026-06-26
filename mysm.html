@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>隐藏图片弹窗页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, sans-serif;
+        }
+        /* 页面纯白空白背景 */
+        body {
+            min-height: 100vh;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        /* 图片容器，用来定位按钮在图片上层 */
+        .img-container {
+            position: relative;
+        }
+        /* 主图 wm.jpg 居中放大 */
+        .main-img {
+            width: min(85%, 720px);
+            max-height: 82vh;
+            object-fit: contain;
+            display: block;
+        }
+        /* 问号按钮：贴在图片中间偏右 */
+        .trigger-btn {
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,184,198,0.85);
+            color: #c8246c;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(242, 120, 161, 0.22);
+        }
+        .trigger-btn:hover {
+            transform: translate(-50%, -50%) scale(1.12);
+            background: #ffb8c6;
+        }
+        /* pb.jpg 再往右微调，left改为66% */
+        .pop-img {
+            width: min(42.5%, 360px);
+            max-height: 41vh;
+            object-fit: contain;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 66%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="img-container">
+        <!-- 初始大图 wm.jpg -->
+        <img class="main-img" src="wm.jpg" alt="主图">
+        <!-- 问号按钮，浮在图片表面中间偏右 -->
+        <button class="trigger-btn" id="qBtn">？</button>
+        <!-- 点击后显示 pb.jpg（缩小两倍、更靠右） -->
+        <img class="pop-img" id="pbImg" src="pb.jpg" alt="隐藏图">
+    </div>
+
+    <script>
+        const btn = document.getElementById('qBtn');
+        const popImg = document.getElementById('pbImg');
+        btn.onclick = function() {
+            btn.style.display = 'none';
+            popImg.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
